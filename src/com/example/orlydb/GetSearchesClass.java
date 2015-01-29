@@ -1,0 +1,53 @@
+package com.example.orlydb;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URLEncoder;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+
+import android.os.AsyncTask;
+
+public class GetSearchesClass extends AsyncTask<Search, Integer, String> {
+
+	@Override
+	protected String doInBackground(Search... params) {
+		String result;
+		Search search = params[0];
+		// TODO Auto-generated method stub
+		try {
+			result = getSearches(search.URL, search.search);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return null;
+		}
+		return result;
+	}
+	
+	String getSearches(String URL, String search) throws ClientProtocolException, IOException {
+		String encoded = URLEncoder.encode(search, "UTF-8");
+		
+	    HttpClient httpClient = new DefaultHttpClient();
+	    HttpContext localContext = new BasicHttpContext();
+	    HttpGet httpGet = new HttpGet(URL + encoded);
+	    HttpResponse response = httpClient.execute(httpGet, localContext);
+	    
+		String result = "";
+		
+		BufferedReader reader = new BufferedReader(
+		new InputStreamReader(response.getEntity().getContent()));
+
+		String line = null;
+		while ((line = reader.readLine()) != null) {
+			result += line + "\n";
+		}
+		return result;
+	}
+}

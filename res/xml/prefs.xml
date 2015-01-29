@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+ <PreferenceCategory>
+   <CheckBoxPreference
+    android:key="@+id/donotwantthis"
+    android:title="Ta bort olämpligt material"
+    android:defaultValue="true" />
+   <!--<CheckBoxPreference
+    android:id="@+id/backgroundcolor"
+    android:title="Ändra bakgrundsfärgen till vit"
+    android:defaultValue="false" /> -->
+ </PreferenceCategory>
+    
+</PreferenceScreen>

@@ -14,6 +14,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class GetSearchesClass extends AsyncTask<Search, Integer, String> {
 
@@ -21,11 +22,10 @@ public class GetSearchesClass extends AsyncTask<Search, Integer, String> {
 	protected String doInBackground(Search... params) {
 		String result;
 		Search search = params[0];
-		// TODO Auto-generated method stub
+
 		try {
 			result = getSearches(search.URL, search.search);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			return null;
 		}
 		return result;
@@ -34,10 +34,14 @@ public class GetSearchesClass extends AsyncTask<Search, Integer, String> {
 	String getSearches(String URL, String search) throws ClientProtocolException, IOException {
 		String encoded = URLEncoder.encode(search, "UTF-8");
 		
+		Log.d("kodadurl",encoded);
+		
 	    HttpClient httpClient = new DefaultHttpClient();
 	    HttpContext localContext = new BasicHttpContext();
 	    HttpGet httpGet = new HttpGet(URL + encoded);
 	    HttpResponse response = httpClient.execute(httpGet, localContext);
+	    
+	    Log.d("kodadurl", (URL + encoded));
 	    
 		String result = "";
 		

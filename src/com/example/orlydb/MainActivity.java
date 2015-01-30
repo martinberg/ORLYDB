@@ -98,7 +98,6 @@ public class MainActivity extends Activity {
 	}
 
 	private void openSettings(View view) {
-		// TODO Auto-generated method stub
 		Intent i = new Intent(this, Prefs.class);
 		startActivity(i);
 	}

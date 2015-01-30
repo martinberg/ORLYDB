@@ -11,7 +11,7 @@ public class Prefs extends PreferenceActivity {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+
 		//sätter bakgrundsfärgen till svart
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);
 		super.onCreate(savedInstanceState);
